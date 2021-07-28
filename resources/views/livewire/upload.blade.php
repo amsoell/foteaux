@@ -4,7 +4,11 @@
         <div>
             <x-jet-label for="media" value="{{ __('Photo') }}" />
             <x-jet-input id="media" class="block mt-1 w-full" type="file" name="media" wire:model="media" />
-            <x-jet-input-error for="media" class="mt-2" />
+            @error('media') <span class="error">{{ $message }}</span> @enderror
+            @if ($media)
+                Photo Preview:
+                <img src="{{ $media->temporaryUrl() }}">
+            @endif
         </div>
         <div>
             <x-jet-label for="caption" value="{{ __('caption') }}" />
