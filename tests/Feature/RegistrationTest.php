@@ -30,6 +30,7 @@ class RegistrationTest extends TestCase
         $this->post('/register', [
             'name' => $this->faker->name(),
             'email' => $this->faker->email(),
+            'username' => preg_replace("/[^A-Za-z0-9 ]/", '', $this->faker->username()),
             'password' => $password,
             'password_confirmation' => $password,
         ])->assertRedirect(RouteServiceProvider::HOME);

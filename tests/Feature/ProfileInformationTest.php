@@ -25,6 +25,7 @@ class ProfileInformationTest extends TestCase
 
         $this->assertEquals($user->name, $component->state['name']);
         $this->assertEquals($user->email, $component->state['email']);
+        $this->assertEquals($user->username, $component->state['username']);
     }
 
     /**
@@ -37,6 +38,7 @@ class ProfileInformationTest extends TestCase
         $new_profile = [
             'name' => $this->faker->name(),
             'email' => $this->faker->email(),
+            'username' => preg_replace("/[^A-Za-z0-9 ]/", '', $this->faker->username()),
         ];
 
         Livewire::test(UpdateProfileInformationForm::class)
