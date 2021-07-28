@@ -19,4 +19,5 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::view('feed', 'feed')->name('feed');
+    Route::view('upload', 'upload')->name('upload');
 });

@@ -15,6 +15,9 @@
                     <x-jet-nav-link href="{{ route('feed') }}" :active="request()->routeIs('feed')">
                         {{ __('Feed') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('upload') }}" :active="request()->routeIs('upload')">
+                        {{ __('Upload Photo') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
