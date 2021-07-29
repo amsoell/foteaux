@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FeedController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('feed/{user:username}', [FeedController::class, 'show']);
+
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::view('feed', 'feed')->name('feed');
+    Route::get('feed', [FeedController::class, 'index'])->name('feed');
     Route::view('upload', 'upload')->name('upload');
 });

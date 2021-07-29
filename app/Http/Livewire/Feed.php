@@ -9,8 +9,11 @@ class Feed extends Component
 {
     public function render(): View
     {
-        $this->media = auth()->user()->media()->take(2)->get();
-
         return view('livewire.feed');
+    }
+
+    public function mount($media)
+    {
+        $this->media = $media;
     }
 }

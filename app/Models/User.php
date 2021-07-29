@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -68,11 +69,18 @@ class User extends Authenticatable
 
     public function following(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'follows', 'user_id', 'follows_user_id');
+        return $this->belongsToMany(User::class, 'follows', 'user_id', 'follows_user_id')
+            ->withTimestamps();
     }
 
     public function followedBy(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'follows', 'follows_user_id', 'user_id');
+        return $this->belongsToMany(User::class, 'follows', 'follows_user_id', 'user_id')
+            ->withTimestamps();
+    }
+
+    public function getFeedMediaAttribute(): Collection
+    {
+        return Media::whereIn('user_id', $this->following->pluck('id'))->orderBy('created_at', 'desc')->get();
     }
 }
