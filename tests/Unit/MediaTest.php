@@ -3,12 +3,15 @@
 namespace Tests\Unit;
 
 use App\Models\Media;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class MediaTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * @test
      */
