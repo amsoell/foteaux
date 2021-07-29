@@ -2,9 +2,9 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __($title ?? 'Feed') }}
-            @isset($user)
+            @if (isset($user) && $user->isNot(auth()->user()))
             <livewire:follow-button :user="$user" />
-            @endisset
+            @endif
         </h2>
     </x-slot>
 
