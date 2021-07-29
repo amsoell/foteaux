@@ -18,7 +18,7 @@ class FeedController extends Controller
     public function show(User $user): View
     {
         return view('feed', [
-            'media' => $user->media(),
+            'media' => $user->media()->orderBy('created_at', 'DESC'),
             'title' => $user->name,
             'user' => $user,
         ]);
