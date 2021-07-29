@@ -2,7 +2,9 @@
     <img class="md:w-1/2 w-full flex-none" src="{{ $item->url }}" />
     <div class="md:flex-1 w-full p-6">
         <div class="meta pb-3">
-            <strong>{{ $item->user->name}}</strong>
+            <a href="{{ route('profile', [
+                'user' => $item->user,
+            ]) }}" class="font-bold">{{ $item->user->name}}</a>
             <span class="text-xs ml-3">{{ $item->created_at->diffForHumans() }}</span>
         </div>
         <caption>
