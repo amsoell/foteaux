@@ -11,6 +11,7 @@ class FeedController extends Controller
     {
         return view('feed', [
             'media' => auth()->user()->feed_media ?? [],
+            'title' => 'My Feed',
         ]);
     }
 
@@ -18,6 +19,9 @@ class FeedController extends Controller
     {
         $media = $user->media;
 
-        return view('feed', compact('media'));
+        return view('feed', [
+            'media' => $media,
+            'title' => $user->name,
+        ]);
     }
 }
