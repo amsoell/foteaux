@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -20,7 +22,7 @@ class Upload extends Component
         ]);
     }
 
-    public function save(): void
+    public function save(): Redirector | RedirectResponse
     {
         $this->validate([
             'media'   => 'image|required|max:1024',
@@ -30,6 +32,12 @@ class Upload extends Component
         auth()->user()?->media()->create([
             'location' => $this->media->storePublicly('media', 's3'),
             'caption'  => $this->caption,
+        ]);
+
+        session()->flash('message', 'Your photo has been added to your feed');
+
+        return redirect()->route('profile', [
+            'user' => auth()->user(),
         ]);
     }
 

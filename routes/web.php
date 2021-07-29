@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('feed/{user:username}', [FeedController::class, 'show']);
+Route::get('feed/{user:username}', [FeedController::class, 'show'])->name('profile');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('feed', [FeedController::class, 'index'])->name('feed');
