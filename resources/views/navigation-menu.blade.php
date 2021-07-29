@@ -9,18 +9,26 @@
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
-
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @auth
                     <x-jet-nav-link href="{{ route('feed') }}" :active="request()->routeIs('feed')">
                         {{ __('Feed') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('upload') }}" :active="request()->routeIs('upload')">
                         {{ __('Upload Photo') }}
                     </x-jet-nav-link>
+                    @else
+                    <x-jet-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
+                        {{ __('Log in') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                        {{ __('Register') }}
+                    </x-jet-nav-link>
+                    @endauth
                 </div>
             </div>
-
+            @auth
             <div class="hidden sm:flex sm:items-center sm:ml-6">
 
                 <!-- Settings Dropdown -->
@@ -88,6 +96,7 @@
                     </svg>
                 </button>
             </div>
+            @endauth
         </div>
     </div>
 
@@ -100,6 +109,7 @@
         </div>
 
         <!-- Responsive Settings Options -->
+        @auth
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -169,5 +179,6 @@
                 @endif
             </div>
         </div>
+        @endauth
     </div>
 </nav>
