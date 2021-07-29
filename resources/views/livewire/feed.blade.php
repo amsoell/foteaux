@@ -3,5 +3,5 @@
     <livewire:media-item :item="$item" />
     @endforeach
 
-    {{ $media->links() }}
+    <div class="px-6 pb-6">{{ $media->links() }}</div>
 </div>
