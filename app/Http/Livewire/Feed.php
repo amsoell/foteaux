@@ -14,7 +14,7 @@ class Feed extends Component
     public function render(): View
     {
         return view('livewire.feed', [
-            'media' => $this->media->paginate(2),
+            'media' => $this->media->paginate(config('app.media_per_page')),
         ]);
     }
 
