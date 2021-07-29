@@ -8,12 +8,14 @@ use Livewire\Component;
 
 class Feed extends Component
 {
-    public mixed $media;
+    private mixed $media;
     public User | null $user;
 
     public function render(): View
     {
-        return view('livewire.feed');
+        return view('livewire.feed', [
+            'media' => $this->media->paginate(2),
+        ]);
     }
 
     public function mount(mixed $media, User $user = null): void

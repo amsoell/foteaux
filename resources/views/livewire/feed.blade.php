@@ -5,4 +5,6 @@
         <caption>{{ $item->caption }}</caption>
     </div>
     @endforeach
+
+    {{ $media->links() }}
 </div>
