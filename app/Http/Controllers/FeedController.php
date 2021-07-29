@@ -22,6 +22,7 @@ class FeedController extends Controller
         return view('feed', [
             'media' => $media,
             'title' => $user->name,
+            'user' => $user,
         ]);
     }
 }
