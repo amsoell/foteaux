@@ -1,0 +1,16 @@
+name: analysis
+
+on: [push]
+
+jobs:
+  static-code-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Install composer dependencies
+      run: composer install --prefer-dist
+
+    - name: Run static code analysis
+      run: ./vendor/bin/phpstan --no-progress
