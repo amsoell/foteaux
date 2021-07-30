@@ -24,3 +24,11 @@ yarn install
 yarn dev
 php artisan migrate
 ```
+
+## API Access
+
+Foteaux data can be accessed through a RESTful API
+
+### Tokens
+
+After logging into the web interface, API tokens can be generated at `/user/api-tokens` URI. After obtaining an API token, it should be included in all request headers as `Authorization: Bearer xyz`
