@@ -8,9 +8,9 @@
  * )
  *
  * @OA\SecurityScheme(
- *   securityScheme="BasicAuth",
+ *   securityScheme="bearerAuth",
  *   type="http",
- *   scheme="basic"
+ *   scheme="bearer"
  * )
  **/
 
