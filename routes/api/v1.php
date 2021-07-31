@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\FeedController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\UserMediaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,4 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/feed', [ FeedController::class, 'index' ]);
+
+    Route::get('/users/{user:username}', [ UserController::class, 'show' ]);
+    Route::get('/users/{user:username}/media', [ UserMediaController::class, 'index' ]);
 });

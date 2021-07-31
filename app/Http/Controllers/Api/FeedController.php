@@ -18,7 +18,7 @@ class FeedController extends Controller
      *        response=200,
      *        description="Successful media retrieval",
      *        @OA\JsonContent(
-     *           @OA\Property(property="data", ref="#/components/schemas/Media")
+     *           @OA\Property(property="data", type="array", @OA\Items(ref="#/components/schemas/Media"))
      *        )
      *     )
      * )
