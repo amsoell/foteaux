@@ -14,7 +14,7 @@ class UserMediaController extends Controller
      *     summary="Retrieve user media records",
      *     operationId="readUserMedia",
      *     security={{"bearerAuth": {}}},
-     *     tags={"user", "media"},
+     *     tags={"user"},
      *     @OA\Parameter(
      *         description="User account username",
      *         in="path",

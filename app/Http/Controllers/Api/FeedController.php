@@ -13,7 +13,7 @@ class FeedController extends Controller
      *     summary="Retrieve authenticated user's media feed",
      *     operationId="readUserFeed",
      *     security={{"bearerAuth": {}}},
-     *     tags={"user"},
+     *     tags={},
      *     @OA\Response(
      *        response=200,
      *        description="Successful media retrieval",

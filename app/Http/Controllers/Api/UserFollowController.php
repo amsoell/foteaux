@@ -15,7 +15,7 @@ class UserFollowController extends Controller
      *     path="/users/{username}/follow",
      *     summary="Unfollow a user account",
      *     operationId="createUserFollow",
-     *     tags={"user","groups"},
+     *     tags={"user","follows"},
      *     @OA\Parameter(
      *         description="User account username",
      *         in="path",
@@ -56,7 +56,7 @@ class UserFollowController extends Controller
      *     path="/users/{username}/follow",
      *     summary="Unfollow a user account",
      *     operationId="deleteUserFollow",
-     *     tags={"user","groups"},
+     *     tags={"user","follows"},
      *     @OA\Parameter(
      *         description="User account username",
      *         in="path",
