@@ -35,10 +35,15 @@ Foteaux can be run in a Docker environment as well.
 cp .env.example .env
 composer install
 ./vendor/bin/sail up -d
+./vendor/bin/sail artisan key:generate
 ./vendor/bin/sail artisan migrate
 ./vendor/bin/sail composer install
 ./vendor/bin/sail npm install
 ./vendor/bin/sail npm run dev
 ```
+
+On initial setup, you will need to do a couple of things:
+1. Add the `minio` hostname do your local dns pointing to localhost
+2. create the appropriate bucket in minio. Navigate to http://minio:8900/buckets and create a new bucket called `foteaux`
 
 After this, the development environment should be accessible at http://0.0.0.0
