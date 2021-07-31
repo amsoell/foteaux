@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\Controller;
 use App\Http\Resources\Media;
 use App\Models\User;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
