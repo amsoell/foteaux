@@ -13,6 +13,7 @@ class UserController extends Controller
      *     path="/users/{username}",
      *     summary="Retrieve user record",
      *     operationId="readUser",
+     *     security={{"BasicAuth": {}}},
      *     tags={"user"},
      *     @OA\Parameter(
      *         description="User account username",

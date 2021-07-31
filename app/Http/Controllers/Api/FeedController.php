@@ -13,6 +13,7 @@ class FeedController extends Controller
      *     path="/feed",
      *     summary="Retrieve authenticated user's media feed",
      *     operationId="readUserFeed",
+     *     security={{"BasicAuth": {}}},
      *     tags={"user"},
      *     @OA\Response(
      *        response=200,

@@ -6,6 +6,12 @@
  *    title="Foteaux API",
  *    version="1.0.0",
  * )
+ *
+ * @OA\SecurityScheme(
+ *   securityScheme="BasicAuth",
+ *   type="http",
+ *   scheme="basic"
+ * )
  **/
 
 namespace App\Http\Controllers\Api;
