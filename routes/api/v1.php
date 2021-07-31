@@ -22,9 +22,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('/users/{user:username}')->group(function () {
         Route::get('', [ UserController::class, 'show' ]);
+        Route::patch('', [ UserController::class, 'update' ]);
+
         Route::get('media', [ UserMediaController::class, 'index' ]);
 
-        Route::get('follow', [ UserFollowController::class, 'store' ]);
+        Route::post('follow', [ UserFollowController::class, 'store' ]);
         Route::delete('follow', [ UserFollowController::class, 'delete' ]);
     });
 });
