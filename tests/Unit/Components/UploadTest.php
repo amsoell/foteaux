@@ -33,7 +33,7 @@ class UploadTest extends TestCase
      */
     public function it_uploads_files()
     {
-        Storage::fake();
+        Storage::fake('s3');
 
         $user = User::factory()->create();
         $filename = 'photo.jpg';
@@ -47,7 +47,7 @@ class UploadTest extends TestCase
              ->call('save');
 
         $this->assertCount(1, $user->media);
-        Storage::assertExists($user->media->first()->location);
+        Storage::disk('s3')->assertExists($user->media->first()->location);
     }
 
     /**
@@ -55,7 +55,7 @@ class UploadTest extends TestCase
      */
     public function it_displays_file_preview()
     {
-        Storage::fake();
+        Storage::fake('s3');
 
         $user = User::factory()->create();
         $filename = 'photo.jpg';
@@ -74,7 +74,7 @@ class UploadTest extends TestCase
      */
     public function it_redirects_to_feed_after_upload()
     {
-        Storage::fake();
+        Storage::fake('s3');
 
         $user = User::factory()->create();
         $file = UploadedFile::fake()->image('photo.jpg');
@@ -95,7 +95,7 @@ class UploadTest extends TestCase
      */
     public function it_rejects_non_image_uploads()
     {
-        Storage::fake();
+        Storage::fake('s3');
 
         $user = User::factory()->create();
         $filename = 'document.pdf';
@@ -116,7 +116,7 @@ class UploadTest extends TestCase
      */
     public function it_rejects_large_uploads()
     {
-        Storage::fake();
+        Storage::fake('s3');
 
         $user = User::factory()->create();
         $filename = 'photo.jpg';
