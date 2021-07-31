@@ -12,6 +12,8 @@ Foteaux is a safety-first photo sharing service
 Beyond that, Foteaux has been an excuse to implement some software skills that are of a particular interest to me:
 
 + [Laravel Livewire](https://laravel-livewire.com)
++ [Laravel Sail](https://laravel.com/docs/sail)
++ [Laravel Jetstream](https://jetstream.laravel.com)
 + [PHPUnit tests](https://phpunit.de)
 + [OpenAPI documentation](https://swagger.io/resources/open-api/)
 + [Tailwind CSS](https://tailwindcss.com)
@@ -24,3 +26,19 @@ yarn install
 yarn dev
 php artisan migrate
 ```
+
+## Docker Development
+
+Foteaux can be run in a Docker environment as well.
+
+```
+cp .env.example .env
+composer install
+./vendor/bin/sail up -d
+./vendor/bin/sail artisan migrate
+./vendor/bin/sail composer install
+./vendor/bin/sail npm install
+./vendor/bin/sail npm run dev
+```
+
+After this, the development environment should be accessible at http://0.0.0.0
