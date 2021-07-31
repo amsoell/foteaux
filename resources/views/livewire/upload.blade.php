@@ -1,7 +1,7 @@
 <div class="m-6">
     <form wire:submit.prevent="save">
         <div class="border-dashed border-2 border-light-blue-500 p-6">
-            @if ($media)
+            @if ($media && $media->isPreviewable())
                 <img src="{{ $media->temporaryUrl() }}">
             @endif
             @error('media') <span class="error">{{ $message }}</span> @enderror

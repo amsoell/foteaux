@@ -15,13 +15,6 @@ class Upload extends Component
     public mixed $media = null;
     public ?string $caption = null;
 
-    public function updatedPhoto(): void
-    {
-        $this->validate([
-            'media' => 'image|max:1024',
-        ]);
-    }
-
     public function save(): Redirector | RedirectResponse
     {
         $this->validate([
