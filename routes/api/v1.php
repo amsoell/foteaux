@@ -17,16 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/feed', [ FeedController::class, 'index' ]);
+Route::middleware('auth:sanctum')->name('api.v1.')->group(function () {
+    Route::get('/feed', [ FeedController::class, 'index' ])->name('feed');
 
-    Route::prefix('/users/{user:username}')->group(function () {
-        Route::get('', [ UserController::class, 'show' ]);
-        Route::patch('', [ UserController::class, 'update' ]);
+    Route::prefix('/users/{user:username}')->name('user.')->group(function () {
+        Route::get('', [ UserController::class, 'show' ])->name('show');
+        Route::patch('', [ UserController::class, 'update' ])->name('update');
 
-        Route::get('media', [ UserMediaController::class, 'index' ]);
+        Route::get('media', [ UserMediaController::class, 'index' ])->name('media');
 
-        Route::post('follow', [ UserFollowController::class, 'store' ]);
-        Route::delete('follow', [ UserFollowController::class, 'delete' ]);
+        Route::post('follow', [ UserFollowController::class, 'store' ])->name('follow.store');
+        Route::delete('follow', [ UserFollowController::class, 'delete' ])->name('follow.delete');
     });
 });
