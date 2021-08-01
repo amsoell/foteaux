@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Actions\Follow;
+use App\Actions\Unfollow;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
@@ -17,11 +19,11 @@ class FollowButton extends Component
 
     public function follow(): void
     {
-        auth()->user()?->following()->attach($this->user);
+        (new Follow())($this->user);
     }
 
     public function unfollow(): void
     {
-        auth()->user()?->following()->detach($this->user);
+        (new Unfollow())($this->user);
     }
 }

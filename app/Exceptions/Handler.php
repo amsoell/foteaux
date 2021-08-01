@@ -2,7 +2,11 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -35,7 +39,42 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
         });
+    }
+
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request                   $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Throwable
+     */
+    public function render($request, Throwable $e)
+    {
+        if ($request->is('api/*')) {
+            $response = [
+                'success' => false,
+                'message' => $e->getMessage(),
+            ];
+            if (is_object($e) && method_exists($e, 'errors')) {
+                $response['errors'] = $e->errors();
+            }
+            if (config('app.debug')) {
+                $response['detail'] = $e;
+            }
+            // Set an appropriate status code
+            $status = match (true) {
+                $e instanceof AuthenticationException => 401,
+                $e instanceof AuthorizationException  => 403,
+                $e instanceof ModelNotFoundException  => 404,
+                $e instanceof TokenMismatchException  => 419,
+                default                               => 400,
+            };
+
+            return response()->json($response, $status);
+        }
+
+        return parent::render($request, $e);
     }
 }
