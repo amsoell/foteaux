@@ -27,6 +27,6 @@ class Media extends Model
             return '';
         }
 
-        return Storage::url($this->location);
+        return Storage::disk('s3')->url($this->location);
     }
 }
